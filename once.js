@@ -4,10 +4,20 @@
  * @version 0.9
  */
 ;(function(global){	
+	/**
+	 * @description 创建一个a元素，用以后面的路径补齐
+	 * @field
+	 */
+	var aTag=document.createElement('a');
 	
+	/**
+	 * @description 判断是否为函数的方法
+	 * @param {Function} val
+	 */
 	Function.isFunction=function(val){
 		return Object.prototype.toString.call(val)==='[object Function]';
 	};
+	
 	/**
 	 * @description   将相对URL转换成绝对url
 	 * @parem {String} id  相对URL
@@ -15,10 +25,10 @@
 	 * @example id2src('../../init');
 	 */
 	function id2src(id){
-		var a=document.createElement('a');
-		a.href=id;
-		return a.protocol+'//'+a.host+a.port+a.pathname+'.js'
+		aTag.href=id;
+		return aTag.protocol+'//'+aTag.host+aTag.port+aTag.pathname+'.js'
 	}
+	
 	/**
 	 * @description 文件加载器
 	 * @constructor Loader
@@ -30,6 +40,7 @@
 		this.node.async=true;
 		this.fn=null;
 	}
+	
 	Loader.script=document.getElementsByTagName('script')[0];
 	Loader.prototype={
 		request:function(src,fn){
