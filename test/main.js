@@ -2,5 +2,6 @@
  * @author sky
  */
 define(function(require,exports){
-	console.log('test');
+	var $=require('dom').$;
+	$('test').html('xxx');
 });

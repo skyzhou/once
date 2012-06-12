@@ -3,24 +3,11 @@
  * @author sky
  * @version 0.9
  */
-;(function(){
-	var toString=Object.prototype.toString
-	var AP=Array.prototype;
-	
-	Function.isFunction=function(val){
-		return toString.call(val)==='[object Function]';
-	};
-	Array.isArray=Array.isArray||function(val){
-		return toString.call(val)==='[object Array]';
-	};
-	AP.forEach=AP.forEach||function(fn){
-		for(var i=0,l=this.length;i<l;i++){
-			fn(this[i],i,this);
-		}
-	};
-})();
 ;(function(global){	
 	
+	Function.isFunction=function(val){
+		return Object.prototype.toString.call(val)==='[object Function]';
+	};
 	/**
 	 * @description   将相对URL转换成绝对url
 	 * @parem {String} id  相对URL
@@ -47,7 +34,6 @@
 	Loader.prototype={
 		request:function(src,fn){
 			this.node.src=src;
-			console.log(src);
 			this.fn=fn;
 			//设置回调句柄
 			this.onload();
